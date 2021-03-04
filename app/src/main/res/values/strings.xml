@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RandomColorGen</string>
+    <string name="pick_any_color">pick any color</string>
+    <string name="g">G：</string>
+    <string name="b">B：</string>
+    <string name="r">R：</string>
+    <string name="button">Random!</string>
+</resources>

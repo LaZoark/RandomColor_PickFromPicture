@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-37dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="337dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/pick_any_color"
+            app:srcCompat="@drawable/color_wheel"
+            tools:srcCompat="@drawable/color_wheel" />
+
+        <TextView
+            android:id="@+id/textView_R"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="30sp"
+            android:layout_marginEnd="35dp"
+            android:lineSpacingExtra="12sp"
+            android:text="@string/r"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView_G"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:lineSpacingExtra="12sp"
+            android:text="@string/g"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView_B"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="30dp"
+            android:lineSpacingExtra="12sp"
+            android:text="@string/b"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:onClick="randomColor"
+            android:padding="25dp"
+            android:text="@string/button"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
