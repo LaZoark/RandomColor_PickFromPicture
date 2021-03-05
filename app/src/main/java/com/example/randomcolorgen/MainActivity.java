@@ -2,6 +2,7 @@ package com.example.randomcolorgen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,8 +21,37 @@ public class MainActivity extends AppCompatActivity {
 //    TextView mResultTV;
     Button showAndRandomButton;
     private int r,g,b;      // to store color values
-
     Bitmap bitmap;
+    class MyOnClickListener implements View.OnTouchListener {
+        @SuppressLint("SetTextI18n")
+//        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
+                bitmap = mImageView.getDrawingCache();
+
+                int pixel = bitmap.getPixel((int) event.getX(), (int) event.getY());
+                // getting RGB values
+                r = Color.red(pixel);
+                g = Color.green(pixel);
+                b = Color.blue(pixel);
+
+                //getting Hex values
+                String hex = "#" + Integer.toHexString(pixel);
+
+                //set background color of view according to the picked color
+                showAndRandomButton.setBackgroundColor(Color.rgb(r, g, b));
+                //set RGB, Hec values to textView
+                //                    mResultTV.setText("RGB: "+ r +", "+ g +", "+ b + "\nHEX: "+ hex);
+                redCode.setText("R： " + r);
+                greenCode.setText("G： " + g);
+                blueCode.setText("B： " + b);
+                showAndRandomButton.setText("Random!\n" + hex);
+            }
+            return true;
+        }
+    }
+    View.OnTouchListener myListener = new MyOnClickListener();  //建立監聽物件
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,33 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mImageView.buildDrawingCache(true);
 
         //image view on touch listener
-        mImageView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event){
-                if(event.getAction()==MotionEvent.ACTION_DOWN || event.getAction()==MotionEvent.ACTION_MOVE) {
-                    bitmap = mImageView.getDrawingCache();
-
-                    int pixel = bitmap.getPixel((int)event.getX(), (int)event.getY());
-                    // getting RGB values
-                    r = Color.red(pixel);
-                    g = Color.green(pixel);
-                    b = Color.blue(pixel);
-
-                    //getting Hex values
-                    String hex = "#"+ Integer.toHexString(pixel);
-
-                    //set background color of view according to the picked color
-                    showAndRandomButton.setBackgroundColor(Color.rgb(r,g,b));
-                    //set RGB, Hec values to textView
-//                    mResultTV.setText("RGB: "+ r +", "+ g +", "+ b + "\nHEX: "+ hex);
-                    redCode.setText("R： "+r);
-                    greenCode.setText("G： "+g);
-                    blueCode.setText("B： "+b);
-                    showAndRandomButton.setText("Random!\n"+hex);
-                }
-                    return true;
-            }
-        });
+        mImageView.setOnTouchListener(myListener);
 
     }
     public void randomColor(View v){
